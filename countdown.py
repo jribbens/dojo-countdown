@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import random
+from human import human
 from solve import solve
 
 LARGE = (25, 50, 75, 100)
@@ -8,8 +9,12 @@ SMALL = (1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10)
 TARGET = (101, 1000)
 CARDS = 6
 
-def solve_countdown(numbers, target):
-    return solve.solve_numbers(numbers, target, False)
+
+def computer(numbers, target):
+    computer = solve.solve_numbers(numbers, target, False)
+    if isinstance(computer, str):
+        return computer, target
+    return computer[0], computer[1]
 
 
 def choose(values, quantity):
@@ -31,4 +36,19 @@ def interface():
 
 
 if __name__ == "__main__":
-    print(interface())
+    numbers, target = interface()
+    print("Target is: {}   Your cards are: {}".format(
+        target, ", ".join(str(number) for number in numbers)))
+    human_solution = human(numbers, target)
+    computer_solution, computer_result = computer(numbers, target)
+    human_result = eval(human_solution)
+    print("Humamn has: {}: {}\nComputer has: {}: {}\n".format(
+        human_solution, human_result, computer_solution, computer_result))
+    human_diff = abs(human_result - target)
+    computer_diff = abs(computer_result - target)
+    if human_diff < computer_diff:
+        print("Human wins!")
+    elif computer_diff < human_diff:
+        print("Computer wins!")
+    else:
+        print("It's a draw!")
