@@ -236,10 +236,7 @@ function stringify_result(serialised, target) {
     }
 
     var result = serialised[serialised.length-1][0];
-    if (result != target)
-        output += '(off by ' + (abs(result - target)) + ')\n';
-
-    return output;
+    return [output, result];
 }
 
 function _solve_numbers(numbers, target, trickshot) {

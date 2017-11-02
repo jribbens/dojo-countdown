@@ -8,11 +8,11 @@ var = Scope( JS_BUILTINS )
 set_global_object(var)
 
 # Code follows:
-var.registers(['bestdiff', 'fullsize', 'word_in_dictionary', 'OPCOST', 'solve_letters', 'solve_numbers', '_recurse_solve_letters', '_solve_numbers', 'sufficient_letters', 'bestvalsums', 'abs', 'tidyup_result', 'serialise_result', '_recurse_solve_numbers', 'stringify_result', 'OPS'])
+var.registers(['OPS', 'solve_numbers', 'abs', 'solve_letters', 'bestvalsums', '_recurse_solve_letters', '_solve_numbers', 'OPCOST', 'fullsize', '_recurse_solve_numbers', 'word_in_dictionary', 'bestdiff', 'stringify_result', 'serialise_result', 'tidyup_result', 'sufficient_letters'])
 @Js
 def PyJsHoisted__recurse_solve_letters_(letters, node, used_letter, cb, answer, this, arguments, var=var):
     var = Scope({'letters':letters, 'node':node, 'used_letter':used_letter, 'cb':cb, 'answer':answer, 'this':this, 'arguments':arguments}, var)
-    var.registers(['answer', 'node', 'used_letter', 'cb', 'i', 'letters', 'c', 'done'])
+    var.registers(['node', 'i', 'used_letter', 'letters', 'done', 'cb', 'c', 'answer'])
     if var.get('node').get('0'):
         var.get('cb')(var.get('answer'), var.get('node').get('0'))
     if (var.get('answer').get('length')==var.get('letters').get('length')):
@@ -46,7 +46,7 @@ var.put('solve_letters', PyJsHoisted_solve_letters_)
 @Js
 def PyJsHoisted_sufficient_letters_(word, letters, this, arguments, var=var):
     var = Scope({'word':word, 'letters':letters, 'this':this, 'arguments':arguments}, var)
-    var.registers(['letters', 'i', 'word', 'count'])
+    var.registers(['count', 'word', 'i', 'letters'])
     PyJs_Object_2_ = Js({})
     var.put('count', PyJs_Object_2_)
     #for JS loop
@@ -91,7 +91,7 @@ var.put('word_in_dictionary', PyJsHoisted_word_in_dictionary_)
 @Js
 def PyJsHoisted__recurse_solve_numbers_(numbers, searchedi, was_generated, target, levels, valsums, trickshot, this, arguments, var=var):
     var = Scope({'numbers':numbers, 'searchedi':searchedi, 'was_generated':was_generated, 'target':target, 'levels':levels, 'valsums':valsums, 'trickshot':trickshot, 'this':this, 'arguments':arguments}, var)
-    var.registers(['old_was_gen', 'r', 'ni', 'levels', 'numbers', 'valsums', 'o', 'nj', 'trickshot', 'i', 'j', 'was_generated', 'fn', 'newvalsums', 'target', 'op_cost', 'searchedi'])
+    var.registers(['nj', 'i', 'was_generated', 'numbers', 'target', 'levels', 'op_cost', 'newvalsums', 'valsums', 'r', 'old_was_gen', 'fn', 'searchedi', 'ni', 'o', 'j', 'trickshot'])
     (var.put('levels',Js(var.get('levels').to_number())-Js(1))+Js(1))
     #for JS loop
     var.put('i', Js(0.0))
@@ -143,7 +143,7 @@ var.put('_recurse_solve_numbers', PyJsHoisted__recurse_solve_numbers_)
 @Js
 def PyJsHoisted_tidyup_result_(result, this, arguments, var=var):
     var = Scope({'result':result, 'this':this, 'arguments':arguments}, var)
-    var.registers(['child', 'swappable', 'mapping', 'i', 'j', 'result'])
+    var.registers(['mapping', 'i', 'result', 'j', 'child', 'swappable'])
     PyJs_Object_11_ = Js({'?':Js('/'),'_':Js('-')})
     var.put('mapping', PyJs_Object_11_)
     PyJs_Object_12_ = Js({'*':Js(True),'+':Js(True)})
@@ -173,7 +173,7 @@ def PyJsHoisted_tidyup_result_(result, this, arguments, var=var):
             @Js
             def PyJs_anonymous_13_(a, b, this, arguments, var=var):
                 var = Scope({'a':a, 'b':b, 'this':this, 'arguments':arguments}, var)
-                var.registers(['b', 'a'])
+                var.registers(['a', 'b'])
                 return (var.get('b').get('0')-var.get('a').get('0'))
             PyJs_anonymous_13_._set_name('anonymous')
             var.put('childs', var.get('result').callprop('slice', Js(2.0)).callprop('sort', PyJs_anonymous_13_))
@@ -190,7 +190,7 @@ var.put('tidyup_result', PyJsHoisted_tidyup_result_)
 @Js
 def PyJsHoisted_fullsize_(array, this, arguments, var=var):
     var = Scope({'array':array, 'this':this, 'arguments':arguments}, var)
-    var.registers(['i', 'l', 'array'])
+    var.registers(['array', 'i', 'l'])
     if (var.get('array').get('constructor')!=var.get('Array')):
         return Js(0.0)
     var.put('l', Js(0.0))
@@ -207,7 +207,7 @@ var.put('fullsize', PyJsHoisted_fullsize_)
 @Js
 def PyJsHoisted_serialise_result_(result, this, arguments, var=var):
     var = Scope({'result':result, 'this':this, 'arguments':arguments}, var)
-    var.registers(['sliced', 'parts', 'child', 'childparts', 'i', 'thispart', 'result'])
+    var.registers(['i', 'childparts', 'parts', 'thispart', 'result', 'sliced', 'child'])
     var.put('childparts', Js([]))
     #for JS loop
     var.put('i', Js(2.0))
@@ -221,7 +221,7 @@ def PyJsHoisted_serialise_result_(result, this, arguments, var=var):
     @Js
     def PyJs_anonymous_14_(a, b, this, arguments, var=var):
         var = Scope({'a':a, 'b':b, 'this':this, 'arguments':arguments}, var)
-        var.registers(['b', 'a'])
+        var.registers(['a', 'b'])
         return (var.get('fullsize')(var.get('b'))-var.get('fullsize')(var.get('a')))
     PyJs_anonymous_14_._set_name('anonymous')
     var.put('childparts', var.get('childparts').callprop('sort', PyJs_anonymous_14_))
@@ -247,7 +247,7 @@ var.put('serialise_result', PyJsHoisted_serialise_result_)
 @Js
 def PyJsHoisted_stringify_result_(serialised, target, this, arguments, var=var):
     var = Scope({'serialised':serialised, 'target':target, 'this':this, 'arguments':arguments}, var)
-    var.registers(['x', 'output', 'i', 'serialised', 'args', 'target', 'result'])
+    var.registers(['i', 'target', 'serialised', 'args', 'x', 'output', 'result'])
     var.put('output', Js(''))
     var.put('serialised', var.get('serialised').callprop('slice', Js(0.0)))
     #for JS loop
@@ -260,15 +260,13 @@ def PyJsHoisted_stringify_result_(serialised, target, this, arguments, var=var):
         finally:
                 (var.put('i',Js(var.get('i').to_number())+Js(1))-Js(1))
     var.put('result', var.get('serialised').get((var.get('serialised').get('length')-Js(1.0))).get('0'))
-    if (var.get('result')!=var.get('target')):
-        var.put('output', ((Js('(off by ')+var.get('abs')((var.get('result')-var.get('target'))))+Js(')\n')), '+')
-    return var.get('output')
+    return Js([var.get('output'), var.get('result')])
 PyJsHoisted_stringify_result_.func_name = 'stringify_result'
 var.put('stringify_result', PyJsHoisted_stringify_result_)
 @Js
 def PyJsHoisted__solve_numbers_(numbers, target, trickshot, this, arguments, var=var):
     var = Scope({'numbers':numbers, 'target':target, 'trickshot':trickshot, 'this':this, 'arguments':arguments}, var)
-    var.registers(['trickshot', 'was_generated', 'i', 'target', 'numbers'])
+    var.registers(['was_generated', 'i', 'target', 'numbers', 'trickshot'])
     @Js
     def PyJs_anonymous_16_(x, this, arguments, var=var):
         var = Scope({'x':x, 'this':this, 'arguments':arguments}, var)
@@ -292,7 +290,7 @@ var.put('_solve_numbers', PyJsHoisted__solve_numbers_)
 @Js
 def PyJsHoisted_solve_numbers_(numbers, target, trickshot, this, arguments, var=var):
     var = Scope({'numbers':numbers, 'target':target, 'trickshot':trickshot, 'this':this, 'arguments':arguments}, var)
-    var.registers(['i', 'trickshot', 'target', 'numbers'])
+    var.registers(['numbers', 'trickshot', 'i', 'target'])
     var.get('numbers').callprop('sort')
     var.put('bestresult', Js([var.get('numbers').get('0'), var.get('numbers').get('0')]))
     if var.get('trickshot').neg():
