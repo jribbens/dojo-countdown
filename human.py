@@ -28,6 +28,6 @@ def human(numbers, target):
             if result == target:
                 print("Exact hit!")
                 return solution
-            print("You are {} away.".format(abs(target - result)))
+            print("You have {}: {} away.".format(result, abs(target - result)))
         else:
             print(result)
