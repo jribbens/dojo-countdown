@@ -17,9 +17,10 @@ def choose(values, quantity):
 
 
 def interface():
-    num_large = int(input("How many large cards? (0-4)"))
-    if not 0 <= num_large <= 4:
-        raise ValueError("You must choose between 0 and 4 large cards.")
+    num_large = int(input("How many large cards? (0-{}) ".format(len(LARGE))))
+    if not 0 <= num_large <= len(LARGE):
+        raise ValueError("You must choose between 0 and {} large cards.".format(
+            len(LARGE)))
     numbers = choose(LARGE, num_large) + choose(SMALL, CARDS - num_large)
     target = random.randrange(TARGET[0], TARGET[1])
     return numbers, target
