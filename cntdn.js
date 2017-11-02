@@ -73,7 +73,6 @@ function word_in_dictionary(word) {
 
 var bestdiff;
 var bestvalsums;
-const OPS = '+-_*/?';
 
 var OPS = {
     "+": function(n1, n2) { if (n1 < 0 || n2 < 0) return false; return n1+n2; },
@@ -114,18 +113,8 @@ function _recurse_solve_numbers(numbers, searchedi, was_generated, target, level
                 continue;
 
             for (var o in OPS) {
-                const n1 = ni[0];
-                const n2 = nj[0];
-                let r;
-                switch (OPS[i]) {
-                  case "+": r = (n1 < 0 || n2 < 0) ? false : n1+n2;
-                  case "-": r = (n2 >= n1) ? false : n1-n2;
-                  case "_": r = (n2 >= n1) ? false : n1-n2;
-                  case "*": r = n1*n2;
-                  case "/": r = (n2 == 0 || n1%n2 != 0) ? false : n1/n2;
-                  case "?": r = (n2 == 0 || n1%n2 != 0) ? false : n1/n2;
-                }
-
+                const fn = OPS[o];
+                var r = fn(ni[0], nj[0]);
                 if (r === false)
                     continue;
 
