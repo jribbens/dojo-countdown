@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 
 import random
+from solve import solve
 
 LARGE = (25, 50, 75, 100)
 SMALL = (1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10)
 TARGET = (101, 1000)
 CARDS = 6
+
+def solve_countdown(numbers, target):
+    return solve.solve_numbers(numbers, target)
 
 
 def choose(values, quantity):
