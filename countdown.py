@@ -9,7 +9,7 @@ TARGET = (101, 1000)
 CARDS = 6
 
 def solve_countdown(numbers, target):
-    return solve.solve_numbers(numbers, target)
+    return solve.solve_numbers(numbers, target, False)
 
 
 def choose(values, quantity):
