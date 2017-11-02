@@ -113,7 +113,8 @@ function _recurse_solve_numbers(numbers, searchedi, was_generated, target, level
                 continue;
 
             for (var o in OPS) {
-                var r = OPS[o](ni[0], nj[0]);
+                const fn = OPS[o];
+                var r = fn(ni[0], nj[0]);
                 if (r === false)
                     continue;
 
