@@ -5,6 +5,8 @@
  * James Stanley 2014
  */
 
+const abs = Math.abs;
+
 function _recurse_solve_letters(letters, node, used_letter, cb, answer) {
     if (node[0])
         cb(answer, node[0]);
@@ -115,7 +117,7 @@ function _recurse_solve_numbers(numbers, searchedi, was_generated, target, level
                 if (r === false)
                     continue;
 
-                var op_cost = Math.abs(r);
+                var op_cost = abs(r);
                 while (op_cost % 10 == 0 && op_cost != 0)
                     op_cost /= 10;
                 if ((ni[0] == 10 || nj[0] == 10) && o == '*') // HACK: multiplication by 10 is cheap
@@ -124,8 +126,8 @@ function _recurse_solve_numbers(numbers, searchedi, was_generated, target, level
 
                 var newvalsums = valsums + op_cost;
 
-                if ((Math.abs(r - target) < Math.abs(bestresult[0] - target))
-                        || (Math.abs(r - target) == Math.abs(bestresult[0] - target) && (trickshot || newvalsums < bestvalsums))) {
+                if ((abs(r - target) < abs(bestresult[0] - target))
+                        || (abs(r - target) == abs(bestresult[0] - target) && (trickshot || newvalsums < bestvalsums))) {
                     bestresult = [r,o,ni,nj];
                     bestvalsums = newvalsums;
                 }
@@ -234,7 +236,7 @@ function stringify_result(serialised, target) {
 
     var result = serialised[serialised.length-1][0];
     if (result != target)
-        output += '(off by ' + (Math.abs(result - target)) + ')\n';
+        output += '(off by ' + (abs(result - target)) + ')\n';
 
     return output;
 }
@@ -263,7 +265,7 @@ function solve_numbers(numbers, target, trickshot) {
      */
     if (!trickshot) {
         for (var i = 1; i < numbers.length; i++) {
-            if (Math.abs(numbers[i] - target) < Math.abs(bestresult[0] - target)) {
+            if (abs(numbers[i] - target) < abs(bestresult[0] - target)) {
                 bestresult = [numbers[i], numbers[i]];
                 bestvalsums = numbers[i];
             }
